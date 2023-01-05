@@ -29,8 +29,8 @@ if __name__ == "__main__":
         after_cv = frame
 
         ### Threshold https://docs.opencv.org/3.4/d7/d4d/tutorial_py_thresholding.html
-        _, after_cv = cv.threshold(src_gray, value1, value2, cv.THRESH_TOZERO)
-        # _, after_cv = cv.threshold(src_gray, value1, value2, cv.THRESH_BINARY_INV)
+        #_, after_cv = cv.threshold(src_gray, value1, value2, cv.THRESH_TOZERO)
+        #_, after_cv = cv.threshold(src_gray, value1, value2, cv.THRESH_BINARY_INV)
 
         ### image smooting - avreging https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html
         # if first:
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
         ### Template matching https://docs.opencv.org/3.4/d4/dc6/tutorial_py_template_matching.html
         # if first:
-        #     template = cv.imread('photo.jpeg', 0)
+        #     template = cv.imread('image.jpg', 0)
         #     w, h = template.shape[::-1]
         # res = cv.matchTemplate(src_gray, template, cv.TM_CCOEFF)
         # min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
@@ -84,18 +84,18 @@ if __name__ == "__main__":
         cv.imshow('image', after_cv)
 
         ### pong
-        #
-        # if first:
-        #     new_game = ponggame(frame.shape[0],frame.shape[1])
-        #
-        # kernel = np.ones((5, 5), np.float32) / 25
-        # scr_gray = cv.filter2D(src_gray, -1, kernel)
-        # _, thresh4 = cv.threshold(src_gray, value1, 255, cv.THRESH_BINARY_INV)
-        #
-        # for _ in range(5):
-        #     new_game.nastpena_klatka(thresh4)
-        # new_game.rysuj_pilke(thresh4)
-        # cv.imshow('2', thresh4)
+
+        if first:
+            new_game = ponggame(frame.shape[0],frame.shape[1])
+
+        kernel = np.ones((5, 5), np.float32) / 25
+        scr_gray = cv.filter2D(src_gray, -1, kernel)
+        _, thresh4 = cv.threshold(src_gray, value1, 255, cv.THRESH_BINARY_INV)
+
+        for _ in range(5):
+            new_game.nastpena_klatka(thresh4)
+        new_game.rysuj_pilke(thresh4)
+        cv.imshow('2', thresh4)
 
         k = cv.waitKey(5) & 0xFF
         if k == 27:
